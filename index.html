@@ -27,12 +27,31 @@
       padding: 20px;
     }
 
+    .fixed-buttons {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      text-align: right;
+    }
+
+    .fixed-buttons button {
+      margin-left: 5px;
+      padding: 8px 12px;
+      margin-bottom: 5px;
+      background-color: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
     header {
       display: flex;
       align-items: center;
       border-bottom: 2px solid var(--accent-color);
-      padding-bottom: 20px;
-      margin-bottom: 20px;
+      padding: 40px 0 20px 0;
+      margin-bottom: 40px;
     }
 
     header img {
@@ -68,12 +87,6 @@
       text-decoration: none;
     }
 
-    button {
-      margin-right: 10px;
-      padding: 5px 10px;
-      margin-top: 10px;
-    }
-
     body.high-contrast {
       background-color: #000000;
       color: #ffffff;
@@ -94,6 +107,13 @@
   </style>
 </head>
 <body>
+
+  <div class="fixed-buttons">
+    <button onclick="changeFontSize(1)">Aumentar texto</button>
+    <button onclick="changeFontSize(-1)">Disminuir texto</button>
+    <button id="contrastButton" onclick="toggleContrast()">Contraste alto</button>
+  </div>
+
   <div class="container">
     <header>
       <img src="20250326_154438.jpg" alt="Foto de Fernando Lorenzo Soto Mollá">
@@ -103,11 +123,6 @@
         <p><strong>LinkedIn:</strong> <a href="https://cl.linkedin.com/in/fernando-soto-30a279196" target="_blank">Fernando Soto</a></p>
         <p><strong>GitHub:</strong> <a href="https://github.com/ferniloo" target="_blank">Fernilo</a></p>
         <p><strong>Ubicación:</strong> Santiago, Chile</p>
-        <div>
-          <button onclick="changeFontSize(1)">Aumentar texto</button>
-          <button onclick="changeFontSize(-1)">Disminuir texto</button>
-          <button onclick="toggleContrast()">Activar/Desactivar contraste alto</button>
-        </div>
       </div>
     </header>
 
@@ -139,7 +154,7 @@
     <section>
       <h2>🎓 Experiencia Académica</h2>
       <p><strong>Desarrollador – Sistema de Seguridad Integrado</strong><br>
-      📍 Santiago, Chile | 📅 2024<br>
+      Universidad Tecnológica Metropolitana, Santiago, Chile, 2024<br>
       Participación en el diseño e implementación de un sistema de cámaras de vigilancia, timbre y chapa eléctrica con integración a Telegram.<br>
       Contribuí al desarrollo de la lógica de control y configuración de dispositivos.<br>
       Logré una automatización funcional que mejora la seguridad y comunicación remota.</p>
@@ -175,8 +190,15 @@
 
     function toggleContrast() {
       const body = document.body;
+      const button = document.getElementById('contrastButton');
       body.classList.toggle('high-contrast');
+      if (body.classList.contains('high-contrast')) {
+        button.textContent = 'Contraste bajo';
+      } else {
+        button.textContent = 'Contraste alto';
+      }
     }
   </script>
+
 </body>
 </html>
